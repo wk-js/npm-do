@@ -1,0 +1,14 @@
+{
+  "name": "npm-do",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "npm-do": "npm-do.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "FuriouZz",
+  "license": "ISC"
+}
