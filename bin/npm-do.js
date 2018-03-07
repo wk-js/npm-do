@@ -17,17 +17,23 @@ function path_exists(path) {
   return true
 }
 
-const CLIS = [ 'npm', 'wk', '__local__' ]
+const CLIS = [ '__local__', 'wk', 'npm' ]
 
 for (let i = 0, ilen = CLIS.length, cli = null; i < ilen; i++) {
   cli = CLIS[i]
 
-  if (cli === 'wk') {
+  if (cli === '__local__') {
+    cli = NPM_BIN_PATH + '/' + ARGV[0]
+    if (!path_exists(cli)) {
+      continue;
+    } else {
+      ARGV.shift()
+    }
+  } else if (cli === 'wk') {
     cli = NPM_BIN_PATH + '/wk'
+    if (!path_exists(cli)) continue;
   } else if (cli === 'npm') {
     ARGV.unshift( 'run' )
-  } else if (cli === '__local__') {
-    cli = NPM_BIN_PATH + '/' + ARGV.shift()
   }
 
   spawnSync( cli, ARGV, { shell: true, stdio: 'inherit' } )
