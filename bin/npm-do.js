@@ -29,11 +29,11 @@ for (let i = 0, ilen = CLIS.length, cli = null; i < ilen; i++) {
     } else {
       ARGV.shift()
     }
+  } else if (cli === 'npm') {
+    ARGV.unshift( 'run' )
   } else if (cli === 'wk') {
     cli = NPM_BIN_PATH + '/wk'
     if (!path_exists(cli)) continue;
-  } else if (cli === 'npm') {
-    ARGV.unshift( 'run' )
   }
 
   spawnSync( cli, ARGV, { shell: true, stdio: 'inherit' } )
